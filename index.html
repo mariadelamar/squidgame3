@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squid Game Season 3 Countdown</title>
+    <style>
+        /* Squid Game font – thanks to Darrell Flood */
+        @font-face {
+            font-family: 'Game Of Squids';
+            src: url('game-squids.otf');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Game Of Squids', sans-serif; 
+            background-color: black;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        #countdown {
+            font-size: 5em;
+            font-weight: regular;
+            color: #ffffff; /* White color for the numbers */
+            white-space: nowrap; 
+        }
+
+        .unit {
+            color: #ed1b76;  /* Pink color for the letters */
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 1200px) {
+            #countdown {
+                font-size: 3.5em;  /* Smaller font size for mobile */
+            }
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 900px) {
+            #countdown {
+                font-size: 2.5em;  /* Smaller font size for mobile */
+            }
+        }
+
+
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            #countdown {
+                font-size: 2em;  /* Smaller font size for mobile */
+            }
+        }
+
+        @media (max-width: 400px) {
+            #countdown {
+                font-size: 1.5em;  /* Even smaller font size for very small screens */
+            }
+        }
+        
+        .disclaimer {
+            font-family: arial;
+            font-size: 0.55em;
+            color: #249f9c;
+            position: fixed;
+            bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="countdown"></div>
+    
+    <div class="disclaimer">
+    Assuming release date is June 27, 2025
+    </div>
+
+    <script>
+        // Set the unofficial release date (June 27, 2025)
+        const releaseDate = new Date("June 27, 2025 00:00:00").getTime(); 
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = releaseDate - now;
+
+            if (timeLeft < 0) {
+                document.getElementById("countdown").innerHTML = "Squid Game Season 3 is out!";
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Add leading zeros to hours, minutes, and seconds if necessary
+            const pad = (num) => num < 10 ? '0' + num : num;
+
+            document.getElementById("countdown").innerHTML = 
+                `${days}<span class="unit">d</span> ${pad(hours)}<span class="unit">h</span> ${pad(minutes)}<span class="unit">m</span> ${pad(seconds)}<span class="unit">s</span>`;
+
+            setTimeout(updateCountdown, 1000);
+        }
+
+        updateCountdown();
+    </script>
+
+</body>
+</html>
